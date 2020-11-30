@@ -89,7 +89,7 @@ router.post("ClaimService/add") {
     let jObj = body?.asJSON //JSON object
     if let jDict = jObj as? [String:String] {
         if let iid = jDict["id"],let ititle = jDict["title"],let idate = jDict["date"], let isolved = jDict["isSolved"]{
-            let cObj = Claim(iid: iid, ititle: ititle, idate: idate, isolved: Bool(isolved))
+            let cObj = Claim(iid: iid, ititle: ititle, idate: idate, isolved: Int(isolved))
             ClaimDao().addClaim(cObj: cObj)
         }
     }
@@ -102,7 +102,7 @@ router.get("/ClaimService/add") {
     let ititle = request.queryParameters["title"]
     let idate = request.queryParameters["date"]
     if let iid = request.queryParameters["id"] {
-        let cObj = Claim(iid:iid, ititle: ititle, idate: idate, isolved: Bool(isolved!))
+        let cObj = Claim(iid:iid, ititle: ititle, idate: idate, isolved: Int(isolved!))
         ClaimDao().addClaim(cObj: cObj)
         response.send("The Claim record was successfully inserted.")
     } else {
