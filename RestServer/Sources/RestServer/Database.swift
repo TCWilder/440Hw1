@@ -31,7 +31,7 @@ class Database {
             let errcode = sqlite3_errcode(conn)
             print("Create table failed due to error \(errcode)")
         }
-        sqlStmt = "create table if not exists Claim (id text, title text, date text, isSolved boolean)"
+        sqlStmt = "create table if not exists Claim (id text, title text, date text, isSolved integer)"
         if sqlite3_exec(conn, sqlStmt, nil, nil, nil) != SQLITE_OK {
             let errcode = sqlite3_errcode(conn)
             print("Create table failed due to error \(errcode)")
