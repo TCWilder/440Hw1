@@ -26,9 +26,9 @@ struct Claim : Codable {
     var id : String
     var title : String?
     var date : String?
-    var isSolved: Bool?
+    var isSolved: Int?
     
-    init (iid : String, ititle : String?, idate : String?, isolved : Bool?){
+    init (iid : String, ititle : String?, idate : String?, isolved : Int?){
         id = iid
         title = ititle
         date = idate
@@ -70,7 +70,7 @@ class ClaimDao {
                 let date_val = sqlite3_column_text(resultSet, 2)
                 let date = String(cString: date_val!)
                 let solved_val = sqlite3_column_text(resultSet, 3)
-                let solved = Bool(String(cString: solved_val!))
+                let solved = Int(String(cString: solved_val!))
                 cList.append(Claim(iid:id, ititle:title, idate:date, isolved: solved))
             }
         }
